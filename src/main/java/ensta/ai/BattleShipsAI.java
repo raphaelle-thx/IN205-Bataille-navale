@@ -60,7 +60,7 @@ public class BattleShipsAI implements Serializable {
 	 * @param ships the ships to put
 	 */
 	public void putShips(AbstractShip ships[]) {
-		Coords coords;
+		Coords coords = null;
 		Orientation orientation;
 		Orientation[] orientations = Orientation.values();
 

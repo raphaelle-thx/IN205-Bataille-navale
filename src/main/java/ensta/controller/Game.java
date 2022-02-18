@@ -159,6 +159,7 @@ public class Game {
 				(coords.getY() + 1), msg);
 		return ColorUtil.colorize(msg, color);
 	}
+	
 
 	private static List<AbstractShip> createDefaultShips() {
 		return Arrays.asList(new AbstractShip[] { new Destroyer(), new Submarine(), new Submarine(), new BattleShip(),
