@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+E:\Documents\ENSTA 2A\IN205\IN205-Bataille-navale\.metadata\.plugins\org.eclipse.jdt.core

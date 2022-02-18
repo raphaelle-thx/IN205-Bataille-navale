@@ -1,5 +1,10 @@
 package ensta.model.ship;
 
-public class Submarine extends AbstractShip {
+import ensta.util.Orientation;
 
-}
+public class Submarine extends AbstractShip 
+{
+	public Submarine(Orientation orientation){ super('S', "Submarine", 3, orientation); }
+
+	public Submarine(){ this(Orientation.EAST); }
+} 

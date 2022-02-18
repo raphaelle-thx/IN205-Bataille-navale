@@ -1,5 +1,10 @@
 package ensta.model.ship;
 
-public class Destroyer extends AbstractShip {
+import ensta.util.Orientation;
 
+public class Destroyer extends AbstractShip 
+{
+	public Destroyer(Orientation orientation){ super('D', "Destroyer", 2, orientation); }
+
+	public Destroyer(){ this(Orientation.EAST); }
 }
