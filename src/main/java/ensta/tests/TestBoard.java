@@ -47,7 +47,7 @@ public class TestBoard {
 		testBoard.putShip(testDestroyer, coords);
 		Carrier	testCarrier = new Carrier(Orientation.WEST);
 		coords.setX(10);
-        coords.setY(10);
+        coords.setY(8);
         testBoard.putShip(testCarrier, coords);
         coords.setX(2);
         coords.setY(10);
