@@ -14,14 +14,14 @@ public class Coords {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Object getX() {
+	public int getX() {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
-	public Object getY() {
+	public int getY() {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	public boolean isInBoard(int size) {
@@ -35,6 +35,16 @@ public class Coords {
 	}
 
 	public void setCoords(Coords res) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setX(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setY(int i) {
 		// TODO Auto-generated method stub
 		
 	}
