@@ -176,14 +176,6 @@ public class Board implements IBoard {
 		return true;
 	}
 	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 	public Character[][] getMyGrid() {
 		return ship;
 	}
