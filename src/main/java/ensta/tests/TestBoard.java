@@ -5,6 +5,7 @@ import java.util.List;
 
 import ensta.model.Board;
 import ensta.model.Coords;
+import ensta.model.Hit;
 import ensta.model.Player;
 import ensta.model.ship.AbstractShip;
 import ensta.model.ship.Carrier;
@@ -75,6 +76,7 @@ public class TestBoard {
         */
         
         /*Test exo 5*/
+		/*
 		Board testBoard = new Board("Player 1", 15);
 		Destroyer testDestroyer = new Destroyer(Orientation.NORTH);
 		coords.setX(5);
@@ -87,6 +89,30 @@ public class TestBoard {
         coords.setY(5);
 		testBoard.setHit(false, coords);
         testBoard.print();
+        */
+        
+        /*Test exo 6*/
+        Hit testHit;
+        Board testBoard = new Board("Player 1", 15);
+        Destroyer testDestroyer = new Destroyer(Orientation.EAST);
+        coords.setX(10);
+        coords.setY(5);
+        testBoard.putShip(testDestroyer, coords);
+        testBoard.print();
+		testHit = testBoard.sendHit(coords);
+		System.out.println(testHit.toString());
+        testBoard.print();
+        coords.setX(9);
+        testHit = testBoard.sendHit(coords);
+		System.out.println(testHit.toString()); // doit renvoyer "Manqué"
+		testBoard.print();
+		coords.setX(11);
+		testHit = testBoard.sendHit(coords); // doit retourner la valeur TYPE_DU_NAVIRE
+       	System.out.println(testHit.toString());
+		testBoard.print();
+
+        System.out.println("Navire coulé  ? ==> " + testDestroyer.isSunk());
+        System.out.println("Dernière valeur renvoyée ? ==> " + testHit.toString());
         
 	}
 }

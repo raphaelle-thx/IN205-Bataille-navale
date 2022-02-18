@@ -202,6 +202,10 @@ public class Board implements IBoard {
 	public int getSize() {
 		return this.size;
 	}
+	
+	public ShipState[][] getShip() {
+		return ship;
+	}
 
 
 	public void putShip(AbstractShip ship, Coords coords) {
@@ -324,7 +328,19 @@ public class Board implements IBoard {
 
 	@Override
 	public Hit sendHit(Coords res) {
-		// TODO Auto-generated method stub
-		return null;
+		Hit hit;
+		if (ship[res.getY()-1][res.getX()-1].isStruck() == null || ship[res.getY()-1][res.getX()-1].isStruck() == true) {
+			//Ship already down
+			return Hit.MISS;
+		}
+		else {
+			ship[res.getY()-1][res.getX()-1].addStrike();
+			if (ship[res.getY()-1][res.getX()-1].getShip().isSunk()){
+				hit = Hit.fromInt(ship[res.getY()-1][res.getX()-1].getShip().length);
+				System.out.println(hit.toString()+" ==> coulé\n");
+				return hit;
+			}
+			else{ return Hit.STRIKE; }
+		}
 	}
 }
