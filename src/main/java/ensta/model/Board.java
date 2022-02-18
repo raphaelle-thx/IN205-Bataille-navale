@@ -16,13 +16,13 @@ public class Board implements IBoard {
 		this.name = name;
 		this.size = size;
 		this.hits = new Boolean[size][size];
+		this.ship = new Character[size][size];
 		for (int i = 0; i < size; i++) {
 			for (int j = 0; j < size; j++) {
 				ship[i][j] = '.';
 				hits[i][j] = false;
 			}
 		}
-		this.ship = new Character[size][size];
 	}
 	
 	public Board(String name) {
