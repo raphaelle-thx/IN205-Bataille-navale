@@ -15,15 +15,19 @@ import ensta.util.Orientation;
 public class TestBoard {
 	public static void main(String[] args) {
 		/*Test exo 1*/
+		/*
 		Board testBoard = new Board("Player 1", 15);
-		//testBoard.print();
-
+		testBoard.print();
+		*/
+		
 		/*Test exo 2*/
+		/*
 		Submarine testSubmarine = new Submarine(Orientation.EAST);
-        //System.out.println(testSubmarine.orientation);
+        System.out.println(testSubmarine.orientation);
         testSubmarine.setOrientation(Orientation.WEST);
-        //System.out.println(testSubmarine.orientation);
-
+        System.out.println(testSubmarine.orientation);
+		*/
+		
 		/*Test exo 3*/
         Coords coords = new Coords();
         
@@ -62,10 +66,27 @@ public class TestBoard {
 		*/
         
         /*Test exo 4*/
+        /*
         Destroyer testDestroyer = new Destroyer(Orientation.NORTH);
         Carrier	testCarrier = new Carrier(Orientation.WEST);
         Board testEnnemyBoard = new Board("Test", 15);
 		List<AbstractShip> ships = new ArrayList();
         Player testPlayer = new Player(testBoard,testEnnemyBoard, ships);
+        */
+        
+        /*Test exo 5*/
+		Board testBoard = new Board("Player 1", 15);
+		Destroyer testDestroyer = new Destroyer(Orientation.NORTH);
+		coords.setX(5);
+        coords.setY(14);
+        testBoard.putShip(testDestroyer, coords);
+        coords.setX(3);
+        coords.setY(3);
+		testBoard.setHit(true, coords);
+		coords.setX(5);
+        coords.setY(5);
+		testBoard.setHit(false, coords);
+        testBoard.print();
+        
 	}
 }

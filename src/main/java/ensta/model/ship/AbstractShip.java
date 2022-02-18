@@ -8,6 +8,7 @@ public class AbstractShip {
 	public String name;
 	public int length;
 	public Orientation orientation;
+	public int strikeCount;
 		
 	
 	public int getLabel() {
@@ -33,10 +34,16 @@ public class AbstractShip {
 		this.name = name;
 		this.length = length;
 		this.orientation = orientation;
+		this.strikeCount=0;
 	}
+	
+	public void addStrike(){
+		strikeCount ++;
+	}
+	
 	public boolean isSunk() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean sunk = strikeCount == length ? true : false ;
+		return sunk;
 	}
 
 }
