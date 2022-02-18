@@ -4,10 +4,10 @@ import ensta.util.Orientation;
 
 public class AbstractShip {
 	
-	private char label;
-	private String name;
-	private int length;
-	private Orientation orientation;
+	public char label;
+	public String name;
+	public int length;
+	public Orientation orientation;
 		
 	
 	public int getLabel() {

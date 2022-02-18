@@ -1,51 +1,50 @@
 package ensta.model;
 
+import java.util.Random;
+
 public class Coords {
+    private int x, y;
 
-	public Coords(Coords coords) {
-		// TODO Auto-generated constructor stub
-	}
+    public Coords(Coords coords) {
+        this(coords.getX(), coords.getY());
+    }
 
-	public Coords() {
-		// TODO Auto-generated constructor stub
-	}
+    public Coords(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
-	public Coords(int x, int iy) {
-		// TODO Auto-generated constructor stub
-	}
+    public Coords() {
+        this(0, 0);
+    }
 
-	public int getX() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    public int getX() {
+        return x;
+    }
 
-	public int getY() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    public int getY() {
+        return y;
+    }
 
-	public boolean isInBoard(int size) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public void setX(int x) {
+        this.x = x;
+    }
 
-	public static Coords randomCoords(int size) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public void setY(int y) {
+        this.y = y;
+    }
 
-	public void setCoords(Coords res) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void setCoords(Coords coords) {
+        this.x = coords.x;
+        this.y = coords.y;
+    }
 
-	public void setX(int i) {
-		// TODO Auto-generated method stub
-		
-	}
+    public boolean isInBoard(int size) {
+        return (x >= 0 && x < size && y >= 0 && y < size);
+    }
 
-	public void setY(int i) {
-		// TODO Auto-generated method stub
-		
-	}
+    public static Coords randomCoords(int size) {
+        Random random = new Random();
+        return new Coords(random.nextInt(size), random.nextInt(size));
+    }
 }

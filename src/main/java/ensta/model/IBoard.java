@@ -16,7 +16,7 @@ public interface IBoard {
     * @param coords
      * @return true if the ship is put on the board
     */
-    public boolean putShip(AbstractShip ship, Coords coords);
+    public void putShip(AbstractShip ship, Coords coords);
 
     /**
      * Get if a ship is placed at the given position

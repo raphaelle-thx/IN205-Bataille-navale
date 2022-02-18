@@ -29,26 +29,25 @@ public class Board implements IBoard {
 		this(name, 10);
 	}
 
+	public void jumpLine(int n){
+		System.out.print(new String(new char[n]).replace("\0", "\n"));
+	}
 
-	public void printspaces(int n){
-		for (int i = 0 ; i < n ; i++){
-			System.out.print(" ");
-		}
+	public void printSpaces(int n){
+		System.out.print(new String(new char[n]).replace("\0", " "));
 	}
 
 	public void init_display(){
-		System.out.println(" ");
-		printspaces(2 * getSize() + 6 - this.name.length()/2 + 2);
+		jumpLine(1);
+		printSpaces(2 * getSize() + 6 - this.name.length()/2 + 2);
 		System.out.println(this.name);
-		System.out.println(" ");
+		jumpLine(1);
 		
-		printspaces(getSize() + 3);
+		printSpaces(getSize() + 3);
 		System.out.print("SHIPS");
-		printspaces(2 * getSize());
+		printSpaces(2 * getSize());
 		System.out.print("HITS");
-		for (int i = 0 ; i < 2 ; i++){
-			System.out.println(" ");
-		}	
+		jumpLine(2);
 		dotted_line();
 	}
 
@@ -57,59 +56,59 @@ public class Board implements IBoard {
 		for (int i = 0 ; i < getSize() ; i ++){
 			System.out.print(ch);
 			ch += 1;
-			printspaces(1);
+			printSpaces(1);
 		}
 	}
 
 	public void global_letters_display(){
-		printspaces(5);
+		printSpaces(5);
 		letter_display();
-		printspaces(6);
+		printSpaces(6);
 		letter_display();
-		System.out.println(" ");
+		jumpLine(1);
 	}
 
 	public void dotted_line(){
 		for (int k = 0 ; k < 4 * getSize() + 14 ; k ++){
 			System.out.print("-");
 		}
-		System.out.println(" ");
+		jumpLine(1);
 	}
 
 	public void first_numbers_display(int i){
 		if (i < 9) {
-			printspaces(1);
+			printSpaces(1);
 		}
 		System.out.print(i+1);
-		printspaces(1);
+		printSpaces(1);
 		System.out.print("|");
-		printspaces(1);
+		printSpaces(1);
 	}
 
 	public void ships_display(int i, int j){
 		System.out.print(this.ship[i][j]);
-		printspaces(1);
+		printSpaces(1);
 	}
 
 	public void hits_display(int i, int j){
 		if (this.hits[i][j]) {
 			System.out.print("x");
-			printspaces(1);
+			printSpaces(1);
 		}
 		else {
 			System.out.print(".");
-			printspaces(1);
+			printSpaces(1);
 		}
 	}
 
 	public void end_numbers_display(int i){
 		System.out.print("|");
 		if (i < 9) {
-			printspaces(1);
+			printSpaces(1);
 		}
 		System.out.print(i+1);
-		printspaces(1);
-		System.out.println(" ");
+		printSpaces(1);
+		jumpLine(1);
 	}
 
 	public void affichage_grilles(){
@@ -118,9 +117,9 @@ public class Board implements IBoard {
 				
 				for (int j = 0; j < getSize() ; j++) { ships_display(i,j); }
 				
-				System.out.print(" ");
+				printSpaces(1);
 				System.out.print(" || ");
-				System.out.print(" ");
+				printSpaces(1);
 				
 				for (int j = 0; j < getSize() ; j++) { hits_display(i,j);}
 				
@@ -134,9 +133,7 @@ public class Board implements IBoard {
 		dotted_line();
 		affichage_grilles();
 		dotted_line();
-		for (int i = 0 ; i < 2 ; i++){
-			System.out.println(" ");
-		}	
+		jumpLine(2);
 	}
 	public boolean canPutShip(AbstractShip ship, Coords coords) {
 		Orientation o = ship.getOrientation();
@@ -184,21 +181,87 @@ public class Board implements IBoard {
 		return hits;
 	}
 
-	@Override
 	public int getSize() {
 		return this.size;
 	}
 
-	@Override
-	public boolean putShip(AbstractShip ship, Coords coords) {
-		// TODO Auto-generated method stub
-		return false;
+
+	public void putShip(AbstractShip ship, Coords coords) {
+		Character[][] saveShips = saveShips();
+		Orientation o = ship.getOrientation();
+		int no = 0 , ea = 0 , so = 0, we = 0;
+		if (o == Orientation.NORTH){ no = 1;}
+		if (o == Orientation.EAST){ ea = 1;}
+		if (o == Orientation.SOUTH){ so = 1;}
+		if (o == Orientation.WEST){ we = 1;}
+		try
+		{
+			if (no+so == 1){
+				if (coords.getY() - 1 + (so-no) * ship.length > this.size || coords.getY() - 1 + (so-no) * ship.length < 0){
+					throw new Exception("y coords too big or too small");
+				}
+				for (int i = 0; i < ship.length; i++){
+					if (this.ship[coords.getY() - 1 + (so-no) * i][coords.getX() - 1 ] != '.')
+					{
+						throw new IllegalArgumentException ("A ship is already placed here: " + ship.name.toString() + " not placed.");
+					}
+					this.ship[coords.getY() - 1 + (so-no) * i][coords.getX() - 1 ] = ship.label;
+				}
+			}
+			if (ea+we == 1){
+				if (coords.getX() - 1 + (ea-we) * ship.length > this.size || coords.getX() - 1 + (ea-we) * ship.length < 0){
+					throw new Exception("y coords too big or too small: " + ship.name.toString() + " not placed.");
+				}
+				for (int j = 0; j < ship.length; j++){
+					if (this.ship[coords.getY() - 1][coords.getX() - 1 + (ea-we) * j] != '.')
+					{
+						throw new IllegalArgumentException ("A ship is already placed here: " + ship.name.toString() + " not placed.");
+					}
+					this.ship[coords.getY() - 1][coords.getX() - 1 + (ea-we) * j] = ship.label;
+				}
+			}
+		}
+
+		catch (IllegalArgumentException e)
+		{
+			this.ship = saveShips;
+			jumpLine(1);
+			System.out.println("Problème de type : " + e.toString());
+		}
+		catch (Exception e)
+		{
+			this.ship = saveShips;
+			jumpLine(1);
+			System.out.println("Problème d'indice de type : " + e.toString());
+		}
 	}
 
-	@Override
+	private Character[][] saveShips() {
+		Character[][] saveShips = new Character[this.size][this.size];
+		for (int i = 0; i < this.size; i++)
+		{
+			for (int j = 0; j< this.size; j++)
+			{
+				saveShips[i][j] = this.ship[i][j];
+			}
+		}
+		return saveShips;
+	}
+
 	public boolean hasShip(Coords coords) {
-		// TODO Auto-generated method stub
-		return false;
+		try
+		{
+		if (this.ship[coords.getY()][coords.getX()] != '.')
+			return false;
+		else
+			return true;
+		}
+		catch (Exception e)
+		{
+			System.out.println("Problème d'indice de type : " + e.toString() );
+			System.out.println("Réponse à l'appel hasShip("+coords.getX()+","+coords.getY()+") impossible, false renvoyé par défaut\n");
+			return false;
+		}
 	}
 
 	@Override
