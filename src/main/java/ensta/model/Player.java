@@ -57,7 +57,9 @@ public class Player {
 			board.putShip(s, coords);
 
             // TODO when ship placement successful
-            ++i;
+            if (s.getInitialized()){
+            	++i;
+            }
             done = i == 5;
 
             board.print();
@@ -69,7 +71,7 @@ public class Player {
 		Hit hit = null;
 
 		do {
-			System.out.println("où frapper?");
+			System.out.println("Où frapper?");
 			InputHelper.CoordInput hitInput = InputHelper.readCoordInput();
 			// TODO call sendHit on this.opponentBoard
 			// TODO : Game expects sendHit to return BOTH hit result & hit coords.

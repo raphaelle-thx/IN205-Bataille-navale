@@ -48,4 +48,6 @@ public interface IBoard {
 	public Hit sendHit(Coords res);
 
 	public boolean canPutShip(AbstractShip ship, Coords coords);
+
+	public void print();
 }

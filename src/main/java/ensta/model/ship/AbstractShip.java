@@ -9,6 +9,7 @@ public class AbstractShip {
 	public int length;
 	public Orientation orientation;
 	public int strikeCount;
+	public boolean initialized;
 		
 	
 	public int getLabel() {
@@ -25,6 +26,10 @@ public class AbstractShip {
 
 	public Orientation getOrientation() {
 		return this.orientation;
+	}
+	
+	public boolean getInitialized() {
+		return this.initialized;
 	}
 	
 	public void setOrientation(Orientation orientation) {this.orientation = orientation; }
