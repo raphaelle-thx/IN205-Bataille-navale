@@ -1,7 +1,12 @@
 package ensta.tests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ensta.model.Board;
 import ensta.model.Coords;
+import ensta.model.Player;
+import ensta.model.ship.AbstractShip;
 import ensta.model.ship.Carrier;
 import ensta.model.ship.Destroyer;
 import ensta.model.ship.Submarine;
@@ -23,6 +28,7 @@ public class TestBoard {
         Coords coords = new Coords();
         
         // On essaie de placer un sous-marin en dehors de la grille ==> Erreur.
+        /*
         coords.setX(15);
         coords.setY(15);
         testBoard.putShip(testSubmarine, coords);
@@ -53,5 +59,13 @@ public class TestBoard {
         coords.setY(10);
 		testBoard.putShip(testCarrier, coords);
 		testBoard.print();
+		*/
+        
+        /*Test exo 4*/
+        Destroyer testDestroyer = new Destroyer(Orientation.NORTH);
+        Carrier	testCarrier = new Carrier(Orientation.WEST);
+        Board testEnnemyBoard = new Board("Test", 15);
+		List<AbstractShip> ships = new ArrayList();
+        Player testPlayer = new Player(testBoard,testEnnemyBoard, ships);
 	}
 }
