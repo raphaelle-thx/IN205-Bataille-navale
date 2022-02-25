@@ -76,7 +76,7 @@ public class TestBoard {
         */
         
         /*Test exo 5*/
-		/*
+        /*
 		Board testBoard = new Board("Player 1", 15);
 		Destroyer testDestroyer = new Destroyer(Orientation.NORTH);
 		coords.setX(5);
@@ -92,6 +92,7 @@ public class TestBoard {
         */
         
         /*Test exo 6*/
+        
         Hit testHit;
         Board testBoard = new Board("Player 1", 15);
         Destroyer testDestroyer = new Destroyer(Orientation.EAST);
@@ -113,6 +114,7 @@ public class TestBoard {
 
         System.out.println("Navire coulé  ? ==> " + testDestroyer.isSunk());
         System.out.println("Dernière valeur renvoyée ? ==> " + testHit.toString());
+        
         
 	}
 }

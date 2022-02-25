@@ -221,7 +221,7 @@ public class Board implements IBoard {
 		try
 		{
 			if (no+so == 1){
-				if (coords.getY() - 1 + (so-no) * ship.length > this.size || coords.getY() - 1 + (so-no) * ship.length < 0){
+				if (coords.getY() - 1 + (so-no) * ship.length > this.size || coords.getY() + (so-no) * ship.length < 0){
 					throw new Exception("y coords too big or too small");
 				}
 				for (int i = 0; i < ship.length; i++){
@@ -233,7 +233,7 @@ public class Board implements IBoard {
 				}
 			}
 			if (ea+we == 1){
-				if (coords.getX() - 1 + (ea-we) * ship.length > this.size || coords.getX() - 1 + (ea-we) * ship.length < 0){
+				if (coords.getX() - 1 + (ea-we) * ship.length > this.size || coords.getX() - 1 + (ea-we) * ship.length < -1){
 					throw new Exception("y coords too big or too small: " + ship.name.toString() + " not placed.");
 				}
 				for (int j = 0; j < ship.length; j++){
@@ -308,7 +308,7 @@ public class Board implements IBoard {
 	@Override
 	public void setHit(boolean hit, Coords coords) {
 		try{
-		this.hits[coords.getY()-1][coords.getX()-1] = hit;
+		this.hits[coords.getY()][coords.getX()] = hit;
 		}
 		catch (Exception e)
 		{

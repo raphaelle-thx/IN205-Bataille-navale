@@ -39,7 +39,7 @@ public class AbstractShip {
 		this.name = name;
 		this.length = length;
 		this.orientation = orientation;
-		this.strikeCount=0;
+		this.strikeCount = 0;
 	}
 	
 	public void addStrike(){

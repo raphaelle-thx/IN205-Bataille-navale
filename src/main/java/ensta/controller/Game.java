@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import ensta.ai.PlayerAI;
 import ensta.model.Board;
 import ensta.model.Coords;
 import ensta.model.Hit;
@@ -39,13 +40,27 @@ public class Game {
 
 	public Game init() {
 		if (!loadSave()) {
-
+			System.out.println("Entre ton nom : ");
+            sin = new Scanner(System.in);
+            String name = sin.nextLine();
 
 			// TODO init boards
+            Board b1, b2;
+            b1 = new Board(name);
+            b2 = new Board(" COMPUTER ");
+
+            List<AbstractShip> ships1 = createDefaultShips();
+            List<AbstractShip> ships2 = createDefaultShips();
 
 			// TODO init this.player1 & this.player2
+            player1 = new Player(b1, b2, ships1);
+            player2 = new PlayerAI(b2, b1, ships2);
+            
+            b1.print();
 
 			// TODO place player ships
+            player1.putShips();
+            player2.putShips();
 		}
 		return this;
 	}
@@ -63,7 +78,10 @@ public class Game {
 		boolean done;
 		do {
 			hit = Hit.MISS; // TODO player1 send a hit
+			hit = player1.sendHit(coords);
+			
 			boolean strike = hit != Hit.MISS; // TODO set this hit on his board (b1)
+			b1.setHit(strike, coords);
 
 			done = updateScore();
 			b1.print();
@@ -74,6 +92,7 @@ public class Game {
 			if (!done && !strike) {
 				do {
 					hit = Hit.MISS; // TODO player2 send a hit.
+					hit = player2.sendHit(coords);
 
 					strike = hit != Hit.MISS;
 					if (strike) {

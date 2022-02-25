@@ -124,7 +124,10 @@ public class BattleShipsAI implements Serializable {
 			res = pickRandomCoords();
 		}
 
-		Hit hit = opponent.sendHit(res);
+		Coords tmp = new Coords();
+		tmp.setX(res.getX() + 1);
+		tmp.setY(res.getY() + 1);
+		Hit hit = opponent.sendHit(tmp);
 		board.setHit(hit != Hit.MISS, res);
 
 		if (hit != Hit.MISS) {
